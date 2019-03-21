@@ -94,6 +94,17 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Encoder" , m_encoder.getPosition());
   }
   @Override
+  public void autonomousPeriodic() {
+    if(1<turn && turn <= 2){
+      double valueR = 1/turn;
+    differentialDrive.tankDrive(joystick1.getRawAxis(0) *valueR ,joystick1.getRawAxis(1));
+    }
+  else if(0 <= turn && turn < 1){
+    double valueL = 1/(2 - turn);
+    differentialDrive.tankDrive(joystick1.getRawAxis(0), joystick1.getRawAxis(1) * valueL)
+    }
+  }
+  @Override
   public void teleopPeriodic() {
     differentialDrive.arcadeDrive((Math.pow(-joystick1.getRawAxis(1), 3)), Math.pow(-joystick1.getRawAxis(4), 3));
     // read PID coefficients from SmartDashboard
