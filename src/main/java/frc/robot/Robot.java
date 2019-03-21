@@ -33,6 +33,7 @@ public class Robot extends TimedRobot {
   private DifferentialDrive differentialDrive;
   private CANPIDController m_pidController;
   private CANEncoder m_encoder;
+  private double turn;
   private double rotations = 0;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
 
@@ -101,7 +102,7 @@ public class Robot extends TimedRobot {
     }
   else if(0 <= turn && turn < 1){
     double valueL = 1/(2 - turn);
-    differentialDrive.tankDrive(joystick1.getRawAxis(0), joystick1.getRawAxis(1) * valueL)
+    differentialDrive.tankDrive(joystick1.getRawAxis(0), joystick1.getRawAxis(1) * valueL);
     }
   }
   @Override
